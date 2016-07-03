@@ -7,7 +7,7 @@ router.use(function(req, res, next){
 })
 
 router.get('/bookmarks', function(req, res){
-	res.send("bookmarks")
+	res.send("bookmarks");
 });
 
 module.exports = router;
