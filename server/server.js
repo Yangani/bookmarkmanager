@@ -2,12 +2,10 @@ var express = require('express');
 var app = express();
 var router = require('./router');
 
+// express will look in this folder for static content 
+app.use(express.static('public'));
+
 app.use('/api', router);
-
-app.get('/', function(req, res){
-	res.send("Hello Handsome!")
-})
-
 
 app.listen(3000, function() {
 	console.log("Server is running at port 3000");
