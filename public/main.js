@@ -1,25 +1,47 @@
-var urls = [1, 3, 5, 6, 6,7];
-
-var addBookMark = function() {
-	var  newurl= document.getElementById("newbookmark").value;
-	urls.push(newurl);
-	//Refresh DOM to add the new URL
-	// loadBookMarks();
+//Get urls from the server
+function getUrls(urls) {
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', encodeURI('api/bookmarks'));
+	xhr.onload = function() {
+		if (xhr.status === 200) {
+			var urls = xhr.responseText;
+			displayBookMarks(urls);
+		} else {
+			alert('Request failed.  Returned status of ' + xhr.status);
+		}
+	};
+	xhr.send();
 }
 
+getUrls();
 
-
-function loadBookMarks() {
-	var renderdiv = document.getElementById("bookmarklist")
-	urls.map(function(url){
+//Display bookmark list
+function displayBookMarks(urls) {
+	urls = JSON.parse(urls);
+	//Render URLS
+	var renderdiv = document.getElementById("bookmarklist");
+	urls.map(function(url) {
 		renderdiv.innerHTML = renderdiv.innerHTML + url + "<br>";
-	})
+	});
 }
 
-loadBookMarks();
+//Post new URLs to the server
+function postUrls() {
+	var  url= document.getElementById("newbookmark").value;
 
-// http://stackoverflow.com/questions/507138/how-do-i-add-a-class-to-a-given-element
-//http://stackoverflow.com/questions/17650776/add-remove-html-inside-div-using-javascript
-
-
-// https://thenewboston.com/forum/topic.php?id=751
+	xhr = new XMLHttpRequest();
+	xhr.open('POST', encodeURI('api/addbookmark'));
+	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	xhr.onload = function() {
+		if (xhr.status === 200) {
+			document.getElementById('bookmarklist').innerHTML = "";
+			console.log("URLS after POST ", xhr.responseText)
+			displayBookMarks(xhr.responseText);
+		} else if (xhr.status !== 200) {
+			alert('Request failed ' + xhr.status);
+		}
+	};
+	xhr.send(url);
+}
+//https://thenewboston.com/forum/topic.php?id=751
+// http://stackoverflow.com/questions/17650776/add-remove-html-inside-div-using-javascript
