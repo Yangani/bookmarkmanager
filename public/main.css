@@ -1,3 +1,14 @@
-body {
+.title {
 	background-color: grey;
+	color: #7B001B;
+}
+
+h1 {
+	text-align: center;
+}
+
+.addbookmark {
+	position: float;
+	margin: 0 auto; 
+	text-align: center;
 }

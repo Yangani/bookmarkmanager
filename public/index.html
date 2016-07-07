@@ -2,10 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Bookmark Manager App</title>
+    <title>Bookmark Manager</title>
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <h1>Express is awesome!</h1>
+	<nav class="title">
+		<h1>Welcome to Bookmark Manager</h1>
+	</nav>
+
+	<div class="addbookmark" id="addbookmark">
+		<input type="text" class="newbookmark" id="newbookmark" value="" placeholder="Enter or paste a new bookmark">
+		<button type="button" id="submit" class="submit" onclick="addBookMark()">Add Bookmark</div>
+	</div>
+
+	<div class="bookmarklist" id="bookmarklist" name="bookmarks">
+	</div>
+	<script type="text/javascript" src="main.js"></script>
 </body>
 </html>
