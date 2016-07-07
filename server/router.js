@@ -2,17 +2,16 @@ var express =  require('express');
 var router = express.Router();
 
 //Databases
-var database = [1, 3, 5, 6, 6,7];
+var database = ["https://www.tablethotels.com", "https://www.google.com", "http://www.festus.me", "https://www.twitter.com", "https://www.yahoo.com","https://www.cnn.com"];
 
-// router.use(function(req, res, next){
-// 	next();
-// })
-
+//SEND URLS to the app
 router.get('/bookmarks', function(req, res){
 	req.body
 	res.send(database);
 });
 
+
+//POST for New URLS
 router.post('/addbookmark', function(req, res) {
 	req.on("data", function(data_) {
 		var url = "1 " + data_;

@@ -21,7 +21,7 @@ function displayBookMarks(urls) {
 	//Render URLS
 	var renderdiv = document.getElementById("bookmarklist");
 	urls.map(function(url) {
-		renderdiv.innerHTML = renderdiv.innerHTML + url + "<br>";
+		renderdiv.innerHTML = renderdiv.innerHTML + "<li>" + '<a href="' + url + '">' + url + '</a>' + "</li>";
 	});
 }
 
@@ -35,7 +35,6 @@ function postUrls() {
 	xhr.onload = function() {
 		if (xhr.status === 200) {
 			document.getElementById('bookmarklist').innerHTML = "";
-			console.log("URLS after POST ", xhr.responseText)
 			displayBookMarks(xhr.responseText);
 		} else if (xhr.status !== 200) {
 			alert('Request failed ' + xhr.status);
@@ -43,5 +42,3 @@ function postUrls() {
 	};
 	xhr.send(url);
 }
-//https://thenewboston.com/forum/topic.php?id=751
-// http://stackoverflow.com/questions/17650776/add-remove-html-inside-div-using-javascript
