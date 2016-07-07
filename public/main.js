@@ -20,14 +20,29 @@ function displayBookMarks(urls) {
 	urls = JSON.parse(urls);
 	//Render URLS
 	var renderdiv = document.getElementById("bookmarklist");
-	urls.map(function(url) {
-		renderdiv.innerHTML = renderdiv.innerHTML + "<li>" + '<a href="' + url + '">' + url + '</a>' + "</li>";
-	});
+	var btn = '<button type="button" class="delete" id="delete" onclick="deleteUrl()">Delete</button>';
+
+	for(var key in urls) {
+		if(urls.hasOwnProperty(key)) { 
+			renderdiv.innerHTML = renderdiv.innerHTML + '<div class="divTableRow"><div class="divTableCell">' + urls[key] + '</div><div class="divTableCell"><a href="' + key + '">' + key + '</a></div><div class="divTableCell">' + btn + '</div></div>';
+		}
+    }
 }
 
 //Post new URLs to the server
 function postUrls() {
-	var  url= document.getElementById("newbookmark").value;
+	var url   = document.getElementById("urlAddress").value;
+	var title = document.getElementById("urlTitle").value;
+	//Return if invalid URL
+	if(!isUrlValid(url)) {
+		alert("Please enter valid url");
+		return;
+	}
+
+	var data = {
+		"url": url,
+		"title": title
+	}
 
 	xhr = new XMLHttpRequest();
 	xhr.open('POST', encodeURI('api/addbookmark'));
@@ -40,5 +55,22 @@ function postUrls() {
 			alert('Request failed ' + xhr.status);
 		}
 	};
-	xhr.send(url);
+	xhr.send(JSON.stringify(data));
+}
+
+
+
+//Check if input URL is Valid
+function isUrlValid(userInput) {
+    var res = userInput.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+    if(res == null)
+        return false;
+    else
+        return true;
+}
+
+
+//Delete bookmark
+function deleteUrl(url) {
+	console.log("URL")
 }
