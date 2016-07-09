@@ -27,4 +27,14 @@ router.post('/addbookmark', function(req, res) {
 	res.send(database);
 })
 
+//Delete URL 
+router.post('/deletebookmark', function(req, res) {
+	req.on("data", function(data_) {
+		data_ = JSON.parse(data_);
+		delete database[data_];
+      });
+	console.log("Database data: ", database);
+	res.send(database);
+})
+
 module.exports = router;
