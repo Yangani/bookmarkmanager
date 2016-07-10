@@ -8,7 +8,7 @@ var database = {
 	"http://www.festus.me" : "My Portfolio",
 	"https://www.twitter.com": "twitter",
 	"https://www.yahoo.com": "Yahoo",
-	"https://www.cnn.com" : "CNN"
+	"http://www.bloomberg.com" : "Bloomberg"
 }
 
 //SEND URLS to the app
