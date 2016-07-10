@@ -47,7 +47,7 @@ h1 {
 
 .divTable{
 	display: table;
-	width: 60%;
+	width: 56%;
 	margin: 0 auto;
 	border-bottom: 1px solid #ddd;
 }
@@ -96,5 +96,6 @@ h1 {
 }
 
 .divDelete {
-	padding-left: 20px;
+	padding-right: 23px;
+	text-align: right;
 }
