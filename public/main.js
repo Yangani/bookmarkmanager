@@ -43,7 +43,7 @@ function addBookMark() {
 		alert("Please enter valid url");
 		return;
 	}
-
+	//Bookmark data to send to server
 	var data = {
 		"url": url,
 		"title": title
@@ -54,8 +54,11 @@ function addBookMark() {
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	xhr.onload = function() {
 		if (xhr.status === 200) {
-			renderBookMarkTemplate(url, title);
-
+			if(xhr.responseText === "Successful") {
+				renderBookMarkTemplate(url, title);
+			} else {
+				alert("Bookmark Already Exists")
+			}
 			//Clear Text area
 			document.getElementById("urlAddress").value= "";
 			document.getElementById("urlTitle").value= "";

@@ -21,10 +21,14 @@ router.get('/bookmarks', function(req, res){
 router.post('/addbookmark', function(req, res) {
 	req.on("data", function(data_) {
 		data_ = JSON.parse(data_);
-		database[data_.url] = data_.title;
+		if(database[data_.url]) {       //Check if value if exist in database
+			res.send("Exist");
+		}
+		else {
+			database[data_.url] = data_.title;
+			res.send("Successful");
+		}
       });
-	console.log("Database data: ", database);
-	res.send(database);
 })
 
 //Delete URL 
