@@ -38,6 +38,12 @@ function renderBookMarkTemplate(url, title) {
 function addBookMark() {
 	var url   = document.getElementById("urlAddress").value;
 	var title = document.getElementById("urlTitle").value;
+
+	//Check if user Intered a title
+	if(!title) {
+		alert("Please enter a title");
+		return;
+	}
 	//Return if invalid URL
 	if(!isUrlValid(url)) {
 		alert("Please enter valid URL");
