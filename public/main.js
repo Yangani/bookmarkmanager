@@ -31,7 +31,7 @@ function displayBookMarks(urls) {
 //Render Individual Bookmark Template
 function renderBookMarkTemplate(url, title) {
 	var renderdiv = document.getElementById("bookmarklist");
-	renderdiv.innerHTML = renderdiv.innerHTML + '<div class="divTableRow" id="' + url + '"><div class="divTableCell">' + title + '</div><div class="divTableCell"><a href="' + url + '">' + url + '</a></div><div class="divTableCell"><button type="button" class="delete" id="delete" value="' + url + '"onclick="deleteBookMark(this.value)">Delete</button></div></div>';
+	renderdiv.innerHTML = renderdiv.innerHTML + '<div class="divTableRow" id="' + url + '"><div class="divTableCell">' + title + '</div><div class="divTableCell"><a href="' + url + '">' + url + '</a></div><div class="divTableCell divDelete"><button type="button" class="delete" id="delete" value="' + url + '"onclick="deleteBookMark(this.value)">Delete</button></div></div>';
 }
 
 //Add new URLs to the server

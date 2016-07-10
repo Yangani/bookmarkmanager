@@ -14,15 +14,17 @@ h1 {
 
 .addbookmark {
 	position: float;
-	margin: 20px auto; 
+	margin: 30px auto; 
 	text-align: center;
 	padding:2px 6px;
 }
 
 .textbox {
-	width: 251px;
+	width: 241px;
 	height: 25px;
 	margin-right: 10px;
+	font-size: 14px;
+	padding-left: 10px;
 }
 
 .submit {
@@ -39,7 +41,8 @@ h1 {
 	color:black;
 	border-radius:4px;
 	-moz-border-radius:4px;
-	-webkit-border-radius:4px
+	-webkit-border-radius:4px;
+	vertical-align: middle;
 }
 
 .divTable{
@@ -87,7 +90,11 @@ h1 {
 	font-weight:700;
 	padding:2px 6px;
 	color:black;
-	border-radius:1px;
-	-moz-border-radius:5px;
-	-webkit-border-radius:5px
+	border-radius:3px;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px
+}
+
+.divDelete {
+	padding-left: 20px;
 }
