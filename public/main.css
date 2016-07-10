@@ -1,3 +1,6 @@
+body {
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,sans-serif;
+}
 .title {
 	background-color: grey;
 	color: white;
@@ -13,6 +16,7 @@ h1 {
 	position: float;
 	margin: 20px auto; 
 	text-align: center;
+	padding:2px 6px;
 }
 
 .textbox {
@@ -24,8 +28,18 @@ h1 {
 .submit {
 	width: 80px;
 	height: 28px;
-	font-size: 16px;
-	border-radius: 6px;
+	-webkit-box-shadow:rgba(0,0,0,0.0.1) 0 1px 0 0;
+	-moz-box-shadow:rgba(0,0,0,0.0.1) 0 1px 0 0;
+	box-shadow:rgba(0,0,0,0.0.1) 0 1px 0 0;
+	background-color: #e7e7e7; 
+	border:1px solid #29447E;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,sans-serif;
+	font-size:14px;
+	font-weight:700;
+	color:black;
+	border-radius:4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px
 }
 
 .divTable{
@@ -36,7 +50,7 @@ h1 {
 }
 
 .divTableHeading {
-	font-size: 20px;
+	font-size: 18px;
 	background: #395870;
  	color: #fff;
 	display: table-header-group;
@@ -73,7 +87,7 @@ h1 {
 	font-weight:700;
 	padding:2px 6px;
 	color:black;
-	border-radius:5px;
+	border-radius:1px;
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px
 }
