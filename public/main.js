@@ -1,5 +1,5 @@
 //Get urls from the server
-function getUrls(urls) {
+function getUrls() {
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET', encodeURI('api/bookmarks'));
 	xhr.onload = function() {
@@ -29,8 +29,8 @@ function displayBookMarks(urls) {
     }
 }
 
-//Post new URLs to the server
-function postUrls() {
+//Add new URLs to the server
+function addBookMark() {
 	var url   = document.getElementById("urlAddress").value;
 	var title = document.getElementById("urlTitle").value;
 	//Return if invalid URL
@@ -50,7 +50,7 @@ function postUrls() {
 	xhr.onload = function() {
 		if (xhr.status === 200) {
 			document.getElementById('bookmarklist').innerHTML = "";
-			displayBookMarks(xhr.responseText);
+			getUrls();
 		} else if (xhr.status !== 200) {
 			alert('Request failed ' + xhr.status);
 		}

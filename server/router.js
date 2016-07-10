@@ -33,8 +33,7 @@ router.post('/deletebookmark', function(req, res) {
 		data_ = JSON.parse(data_);
 		delete database[data_];
       });
-	console.log("Database data: ", database);
-	res.send(database);
+	res.send("Delete Successful");
 })
 
 module.exports = router;
