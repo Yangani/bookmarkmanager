@@ -40,7 +40,7 @@ function addBookMark() {
 	var title = document.getElementById("urlTitle").value;
 	//Return if invalid URL
 	if(!isUrlValid(url)) {
-		alert("Please enter valid url");
+		alert("Please enter valid URL");
 		return;
 	}
 	//Bookmark data to send to server
