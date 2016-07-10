@@ -18,15 +18,20 @@ getUrls();
 //Display bookmark list
 function displayBookMarks(urls) {
 	urls = JSON.parse(urls);
-	var renderdiv = document.getElementById("bookmarklist");
+	// var renderdiv = document.getElementById("bookmarklist");
 
 	//Loop through the bookmark list and render
 	for(var key in urls) {
 		if(urls.hasOwnProperty(key)) {
 			//Render each bookmark using the render template
-			renderdiv.innerHTML = renderdiv.innerHTML + '<div class="divTableRow" id="' + key + '"><div class="divTableCell">' + urls[key] + '</div><div class="divTableCell"><a href="' + key + '">' + key + '</a></div><div class="divTableCell"><button type="button" class="delete" id="delete" value="' + key + '"onclick="deleteBookMark(this.value)">Delete</button></div></div>';
+			renderBookMarkTemplate(key, urls[key]);
 		}
     }
+}
+
+function renderBookMarkTemplate(url, title) {
+	var renderdiv = document.getElementById("bookmarklist");
+	renderdiv.innerHTML = renderdiv.innerHTML + '<div class="divTableRow" id="' + url + '"><div class="divTableCell">' + title + '</div><div class="divTableCell"><a href="' + url + '">' + url + '</a></div><div class="divTableCell"><button type="button" class="delete" id="delete" value="' + url + '"onclick="deleteBookMark(this.value)">Delete</button></div></div>';
 }
 
 //Add new URLs to the server
@@ -49,8 +54,11 @@ function addBookMark() {
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	xhr.onload = function() {
 		if (xhr.status === 200) {
-			document.getElementById('bookmarklist').innerHTML = "";
-			getUrls();
+			renderBookMarkTemplate(url, title);
+
+			//Clear Text area
+			document.getElementById("urlAddress").value= "";
+			document.getElementById("urlTitle").value= "";
 		} else if (xhr.status !== 200) {
 			alert('Request failed ' + xhr.status);
 		}
