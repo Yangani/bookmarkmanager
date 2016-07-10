@@ -18,12 +18,13 @@ getUrls();
 //Display bookmark list
 function displayBookMarks(urls) {
 	urls = JSON.parse(urls);
-	//Render URLS
 	var renderdiv = document.getElementById("bookmarklist");
 
+	//Loop through the bookmark list and render
 	for(var key in urls) {
-		if(urls.hasOwnProperty(key)) { 
-			renderdiv.innerHTML = renderdiv.innerHTML + '<div class="divTableRow" value="' + key + '"><div class="divTableCell">' + urls[key] + '</div><div class="divTableCell"><a href="' + key + '">' + key + '</a></div><div class="divTableCell"><button type="button" class="delete" id="delete" value="' + key + '"onclick="deleteUrl()">Delete</button></div></div>';
+		if(urls.hasOwnProperty(key)) {
+			//Render each bookmark using the render template
+			renderdiv.innerHTML = renderdiv.innerHTML + '<div class="divTableRow" id="' + key + '"><div class="divTableCell">' + urls[key] + '</div><div class="divTableCell"><a href="' + key + '">' + key + '</a></div><div class="divTableCell"><button type="button" class="delete" id="delete" value="' + key + '"onclick="deleteBookMark(this.value)">Delete</button></div></div>';
 		}
     }
 }
@@ -70,20 +71,20 @@ function isUrlValid(userInput) {
 
 
 //Delete bookmark
-function deleteUrl(url) {
-	var url   = document.getElementById("delete").value;
-
+function deleteBookMark(bookmark) {
+	//Delete the Bookmark
+	document.getElementById(bookmark).remove();
+	
 	//Remove URL from the database
 	xhr = new XMLHttpRequest();
 	xhr.open('POST', encodeURI('api/deletebookmark'));
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	xhr.onload = function() {
 		if (xhr.status === 200) {
-			document.getElementById('bookmarklist').innerHTML = "";
-			displayBookMarks(xhr.responseText);
+			console.log("Delete Successful");
 		} else if (xhr.status !== 200) {
 			alert('Request failed ' + xhr.status);
 		}
 	};
-	xhr.send(JSON.stringify(url));
+	xhr.send(JSON.stringify(bookmark));
 }
