@@ -1,6 +1,8 @@
 .title {
 	background-color: grey;
-	color: #7B001B;
+	color: white;
+	padding: 1px 1px;
+	font-size: 20px;
 }
 
 h1 {
@@ -9,18 +11,34 @@ h1 {
 
 .addbookmark {
 	position: float;
-	margin: 10px auto; 
+	margin: 20px auto; 
 	text-align: center;
+}
+
+.textbox {
+	width: 251px;
+	height: 22px;
+	margin-right: 10px;
+}
+
+.submit {
+	width: 80px;
+	height: 28px;
+	font-size: 16px;
+	border-radius: 6px;
 }
 
 .divTable{
 	display: table;
 	width: 60%;
 	margin: 0 auto;
+	border-bottom: 1px solid #ddd;
 }
 
 .divTableHeading {
-	background-color: #EEE;
+	font-size: 20px;
+	background: #395870;
+ 	color: #fff;
 	display: table-header-group;
 	font-weight: bold;
 }
@@ -29,16 +47,33 @@ h1 {
 	display: table-row-group;
 }
 
+.divTableRow:nth-child(even) {
+  background: #f0f0f2;
+}
+
+
 .divTableRow {
 	display: table-row;
 }
 
 .divTableCell {
-	border: 1px solid #999999;
+	border: none;
 	display: table-cell;
-	padding: 3px 10px;
+	padding: 5px 10px;
 }
 
 .delete {
-	margin:0 auto;
+	-webkit-box-shadow:rgba(0,0,0,0.0.1) 0 1px 0 0;
+	-moz-box-shadow:rgba(0,0,0,0.0.1) 0 1px 0 0;
+	box-shadow:rgba(0,0,0,0.0.1) 0 1px 0 0;
+	background-color: #e7e7e7; 
+	border:1px solid #29447E;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,sans-serif;
+	font-size:12px;
+	font-weight:700;
+	padding:2px 6px;
+	color:black;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px
 }
