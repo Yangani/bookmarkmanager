@@ -1,43 +1,40 @@
-var express =  require('express');
-var router = express.Router();
+var express    = require('express');
+var router     = express.Router();
+var connection = require('./database/connection');
+var bookmarks  = require('./database/models');
 
-//Databases
-var database = {
-	"https://www.tablethotels.com" : "Tablet Hotels", 
-	"https://www.google.com": "Google",
-	"http://www.festus.me" : "My Portfolio",
-	"https://www.twitter.com": "twitter",
-	"https://www.yahoo.com": "Yahoo",
-	"http://www.bloomberg.com" : "Bloomberg"
-}
+//Initialize connection to MySQL DB
+connection.init();
 
-//SEND URLS to the app
+//Get bookmarks from the database
 router.get('/bookmarks', function(req, res){
-	res.send(database);
+	bookmarks.get(res);
 });
 
-
-//POST for New URLS
+//POST for New bookmarks
 router.post('/addbookmark', function(req, res) {
 	req.on("data", function(data_) {
 		data_ = JSON.parse(data_);
-		if(database[data_.url]) {       //Check if value if exist in database
-			res.send("Exist");
-		}
-		else {
-			database[data_.url] = data_.title;
-			res.send("Successful");
-		}
-      });
+		bookmarks.add(data_, res);
+     });
 })
 
-//Delete URL 
-router.post('/deletebookmark', function(req, res) {
+
+//Edit a Bookmark 
+router.put('/deletebookmark', function(req, res) {
 	req.on("data", function(data_) {
 		data_ = JSON.parse(data_);
-		delete database[data_];
-      });
-	res.send("Delete Successful");
+		bookmarks.delete(data_, res)
+    });
 })
+
+//Delete Bookmark 
+router.delete('/deletebookmark', function(req, res) {
+	req.on("data", function(data_) {
+		data_ = JSON.parse(data_);
+		bookmarks.delete(data_, res)
+    });
+})
+
 
 module.exports = router;

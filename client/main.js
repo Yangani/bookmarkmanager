@@ -19,19 +19,17 @@ getUrls();
 function displayBookMarks(urls) {
 	urls = JSON.parse(urls);
 
-	//Loop through the bookmark list and render
-	for(var key in urls) {
-		if(urls.hasOwnProperty(key)) {
-			//Render each bookmark using the render template
-			renderBookMarkTemplate(key, urls[key]);
-		}
-    }
+	urls.forEach(function(bookmark) {
+		renderBookMarkTemplate(bookmark.url, bookmark.title);
+	})
 }
 
 //Render Individual Bookmark Template
 function renderBookMarkTemplate(url, title) {
+	var deleteButton = '<div class="divTableCell divDelete"><button type="button" class="delete" id="delete" value="' + url + '"onclick="deleteBookMark(this.value)">Delete</button></div>';
+
 	var renderdiv = document.getElementById("bookmarklist");
-	renderdiv.innerHTML = renderdiv.innerHTML + '<div class="divTableRow" id="' + url + '"><div class="divTableCell">' + title + '</div><div class="divTableCell"><a href="' + url + '">' + url + '</a></div><div class="divTableCell divDelete"><button type="button" class="delete" id="delete" value="' + url + '"onclick="deleteBookMark(this.value)">Delete</button></div></div>';
+	renderdiv.innerHTML = renderdiv.innerHTML + '<div class="divTableRow" id="' + url + '"><div class="divTableCell">' + title + '</div><div class="divTableCell"><a href="' + url + '">' + url + '</a></div>' + deleteButton + '</div>';
 }
 
 //Add new URLs to the server
@@ -62,6 +60,7 @@ function addBookMark() {
 		if (xhr.status === 200) {
 			if(xhr.responseText === "Successful") {
 				renderBookMarkTemplate(url, title);
+				console.log("Successful added Bookmark");
 			} else {
 				alert("Bookmark Already Exists")
 			}
@@ -94,7 +93,25 @@ function deleteBookMark(bookmark) {
 	
 	//Remove URL from the database
 	xhr = new XMLHttpRequest();
-	xhr.open('POST', encodeURI('api/deletebookmark'));
+	xhr.open('DELETE', encodeURI('api/deletebookmark'));
+	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	xhr.onload = function() {
+		if (xhr.status === 200) {
+			console.log("Delete Successful");
+		} else if (xhr.status !== 200) {
+			alert('Request failed ' + xhr.status);
+		}
+	};
+	xhr.send(JSON.stringify(bookmark));
+}
+
+function editBookMark(bookmark) {
+	//Delete the Bookmark
+	document.getElementById(bookmark).remove();
+	
+	//Remove URL from the database
+	xhr = new XMLHttpRequest();
+	xhr.open('DELETE', encodeURI('api/deletebookmark'));
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	xhr.onload = function() {
 		if (xhr.status === 200) {
